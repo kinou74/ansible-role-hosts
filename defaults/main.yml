@@ -1,7 +1,7 @@
 # roles/hosts/defaults/main.yml
 ---
 
-hosts_file: /etc/hosts
+hosts_file: "/etc/hosts.ansible"
 
 hosts_ansible_network_interface: "ansible_{{ hosts_network_interface }}"
 
