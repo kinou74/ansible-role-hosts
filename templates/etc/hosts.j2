@@ -1,7 +1,7 @@
 # Hosts file -- Don't edit manually!
-#
 # {{ ansible_managed }}
 
+{# always a good idea to keep this, even for dnsmasq #}
 127.0.0.1  localhost.localdomain  localhost
 {% if hosts_add_default_ipv4 %}
 {{ ansible_default_ipv4.address }}  {{ ansible_fqdn }} {{ ansible_hostname }}
@@ -27,7 +27,7 @@ ff02::2  ip6-allrouters
 {% if hosts_entries|length != 0 %}
 
 # Custom entries
-{% for host in hosts_entries %}
+{% for host in hosts_entries | sort(attribute="ip") %}
 {{ host.ip }}  {{ host.name }} {{ host.aliases | default('') | join(' ') }}
 {% endfor %}
 {% endif %}
